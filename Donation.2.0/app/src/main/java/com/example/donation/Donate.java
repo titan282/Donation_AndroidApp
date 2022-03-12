@@ -1,5 +1,6 @@
 package com.example.donation;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -22,6 +23,7 @@ import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 public class Donate extends AppCompatActivity {
 
@@ -60,7 +62,7 @@ public class Donate extends AppCompatActivity {
         progressBar.setMax(10000);
         if (donateButton != null)
         {
-            Log.v("Donate", "Ready got the donate button");
+            Log.v("Donate", "Really got the donate button");
         }
         amountPicker.setMinValue(0);
         amountPicker.setMaxValue(1000);
@@ -82,10 +84,14 @@ public class Donate extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
+        //Donation2.0
+        switch (id){
+            case R.id.menuReport:
+//                Toast.makeText(this,"Report slected", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this,Report.class));
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
 

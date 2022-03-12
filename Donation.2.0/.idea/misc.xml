@@ -4,9 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/UET/Courses/Mobile/TH/Donation.1.0/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/UET/Courses/Mobile/TH/Donation.1.0/app/src/main/res/layout/content_main.xml" value="0.1" />
+        <entry key="..\:/UET/Courses/Mobile/TH/Donation.1.0/app/src/main/res/layout/content_main.xml" value="0.264" />
         <entry key="..\:/UET/Courses/Mobile/TH/Donation.1.0/app/src/main/res/layout/fragment_first.xml" value="0.10989583333333333" />
         <entry key="..\:/UET/Courses/Mobile/TH/Donation.1.0/app/src/main/res/layout/fragment_second.xml" value="0.10989583333333333" />
+        <entry key="..\:/UET/Courses/Mobile/TH/Donation.2.0/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/UET/Courses/Mobile/TH/Donation.2.0/app/src/main/res/layout/activity_report.xml" value="0.1" />
+        <entry key="..\:/UET/Courses/Mobile/TH/Donation.2.0/app/src/main/res/layout/content_main.xml" value="0.25" />
+        <entry key="..\:/UET/Courses/Mobile/TH/Donation.2.0/app/src/main/res/menu/menu_main.xml" value="0.23333333333333334" />
       </map>
     </option>
   </component>
