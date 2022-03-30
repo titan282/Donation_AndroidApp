@@ -6,3 +6,8 @@
 ## Donation v2.0
 - Thêm **Report** option trong menu
 - Thêm **Report Activity** để hiện danh sách donate
+
+## Donation v3.0
+- Sử dụng **Donation Object Model** và **Base class**
+- Sử dụng **CustomAdapter** hiển thị Report
+- Thay đổi **menu** sử dụng **event handling**
