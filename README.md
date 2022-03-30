@@ -8,6 +8,10 @@
 - Thêm **Report Activity** để hiện danh sách donate
 
 ## Donation v3.0
-- Sử dụng **Donation Object Model** và **Base class**
-- Sử dụng **CustomAdapter** hiển thị Report
-- Thay đổi **menu** sử dụng **event handling**
+- Tạo thêm model **Donation**, và **Base** class để **Donate, Report** extends
+- Tạo một **DonationAdapter** để custom hiển thị listview trong Report
+- Ẩn/hiện các **menuItem**: Donate, Report, Setttings
+## Donation v4.0
+- Tạo thêm **DonationApp** class extend **Application** để bao các **Activity** và khởi tạo các giá trị và khai báo database
+- Sử dụng Database **SQLite**, các Donations sẽ được lưu vào database và giữ giá trị cho lần khởi chạy tiếp theo
+- Thêm **menuItem** Reset
