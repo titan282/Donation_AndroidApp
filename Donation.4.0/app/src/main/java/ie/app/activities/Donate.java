@@ -70,7 +70,6 @@ public class Donate extends Base {
         }
         if(amount > 0){
             app.newDonation(new Donation(amount, method));
-//            app.totalDonated += amount;
             Log.v("Donation", ""+amount+ " "+ app.totalDonated);
             progressBar.setProgress(app.totalDonated);
             amountTotal.setText("$" + app.totalDonated);
