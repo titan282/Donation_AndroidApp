@@ -53,7 +53,7 @@ public class DBManager {
 
 	private Donation toDonation(Cursor cursor) {
 		Donation pojo = new Donation();
-		pojo.id = cursor.getInt(0);
+		pojo.id = cursor.getString(0);
 		pojo.amount = cursor.getInt(1);
 		pojo.method = cursor.getString(2);
 		return pojo;

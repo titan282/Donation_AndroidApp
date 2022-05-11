@@ -20,12 +20,19 @@ import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.List;
+
 import ie.app.activities.databinding.ActivityMainBinding;
+import ie.app.api.ApiService;
 import ie.app.main.DonationApp;
 import ie.app.models.Donation;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Donate extends Base {
 
@@ -40,7 +47,6 @@ public class Donate extends Base {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
@@ -54,6 +60,7 @@ public class Donate extends Base {
         progressBar.setMax(10000);
         amountPicker.setMinValue(0);
         amountPicker.setMaxValue(1000);
+
         amountTotal.setText("$"+app.totalDonated);
         progressBar.setProgress(app.totalDonated);
     }
@@ -76,9 +83,10 @@ public class Donate extends Base {
         }
     }
 
+
+
     @Override
     public void reset(MenuItem item) {
-       app.dbManager.reset();
        app.totalDonated=0;
        progressBar.setProgress(app.totalDonated);
        amountTotal.setText("$"+app.totalDonated);

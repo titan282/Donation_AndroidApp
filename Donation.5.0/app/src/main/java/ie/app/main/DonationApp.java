@@ -14,12 +14,12 @@ public class DonationApp extends Application {
 
     public final int target = 10000;
     public int totalDonated =0;
-    public DBManager dbManager;
+    public List <Donation> donations = new ArrayList<Donation>();
+
     @Override
     public void onCreate() {
         super.onCreate();
         Log.d("Application", "Hello from Donation App");
-        dbManager = new DBManager(this);
     }
 
     public boolean newDonation(Donation donation){
@@ -28,7 +28,7 @@ public class DonationApp extends Application {
             Toast.makeText(this, "Target Exceeded", Toast.LENGTH_SHORT).show();
         }
         else {
-            dbManager.add(donation);
+            donations.add(donation);
             totalDonated += donation.amount;
         }
         return targetArchived;

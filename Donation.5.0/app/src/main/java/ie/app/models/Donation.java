@@ -1,9 +1,12 @@
 package ie.app.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Donation {
     public int amount;
     public String method;
-    public int id;
+    public String id;
     public int upvotes;
     public Donation(){
         amount=0;
