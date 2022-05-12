@@ -20,6 +20,6 @@ public class Donation {
     }
     @Override
     public String toString() {
-        return id + ", " +amount+", "+method+", "+upvotes;
+        return id + ", " +amount+", "+method+", "+upvotes+"\n";
     }
 }

@@ -1,5 +1,6 @@
 package ie.app.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -21,6 +22,7 @@ import retrofit2.Response;
 
 public class Base extends AppCompatActivity {
     public DonationApp app;
+    protected ProgressDialog loadingDialog;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -33,15 +35,22 @@ public class Base extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         app = (DonationApp) getApplication();
+        loading();
         callApi();
+
+    }
+
+    private void loading() {
+        loadingDialog = new ProgressDialog(Base.this, 1);
+        loadingDialog.setMessage("Retrieving Donations List");
+        loadingDialog.show();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         app.totalDonated = sumDonate(app.donations);
-        Toast.makeText(Base.this,""+app.donations.isEmpty(),Toast.LENGTH_SHORT).show();
-
+        Toast.makeText(Base.this,"isEmptyListDonation: "+app.donations.isEmpty(),Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -103,6 +112,10 @@ public class Base extends AppCompatActivity {
                         Toast.makeText(Base.this,"Call thanh cong",Toast.LENGTH_SHORT).show();
                         Toast.makeText(Base.this,response.body().toString(),Toast.LENGTH_SHORT).show();
                         app.donations=response.body();
+                        app.totalDonated = sumDonate(app.donations);
+                        if (loadingDialog.isShowing()) {
+                            loadingDialog.dismiss();
+                        }
                     }
 
                     @Override
