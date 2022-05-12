@@ -21,7 +21,6 @@ import retrofit2.Response;
 
 public class Base extends AppCompatActivity {
     public DonationApp app;
-    public boolean isCallApiDone=false;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -103,8 +102,7 @@ public class Base extends AppCompatActivity {
                     public void onResponse(Call<List<Donation>> call, Response<List<Donation>> response) {
                         Toast.makeText(Base.this,"Call thanh cong",Toast.LENGTH_SHORT).show();
                         Toast.makeText(Base.this,response.body().toString(),Toast.LENGTH_SHORT).show();
-                        app.donations.addAll(response.body());
-                        isCallApiDone=true;
+                        app.donations=response.body();
                     }
 
                     @Override
