@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 public class Donation {
     public int amount;
     public String method;
-    public String id;
+    public int id;
     public int upvotes;
     public Donation(){
         amount=0;

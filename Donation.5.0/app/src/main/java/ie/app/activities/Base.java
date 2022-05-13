@@ -10,7 +10,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.IOException;
 import java.util.List;
 
 import ie.app.api.ApiService;
@@ -23,6 +22,8 @@ import retrofit2.Response;
 public class Base extends AppCompatActivity {
     public DonationApp app;
     protected ProgressDialog loadingDialog;
+    protected ProgressDialog resetDialog;
+    int i=0;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -36,8 +37,6 @@ public class Base extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         app = (DonationApp) getApplication();
         loading();
-        callApi();
-
     }
 
     private void loading() {
@@ -49,8 +48,6 @@ public class Base extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        app.totalDonated = sumDonate(app.donations);
-        Toast.makeText(Base.this,"isEmptyListDonation: "+app.donations.isEmpty(),Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -98,39 +95,24 @@ public class Base extends AppCompatActivity {
     public void donate(MenuItem item){
         startActivity(new Intent(this, Donate.class));
     }
-    public void reset(MenuItem item){    }
-    private void callApiSync() throws IOException {
-        List<Donation> donations= ApiService.apiService.getAnswers().execute().body();
-    }
-    private void callApi() {
+    public void reset(MenuItem item){
+        resetDialog = new ProgressDialog(Base.this, 1);
+        resetDialog.setMessage("Deleting Donations....");
+        resetDialog.show();
 
-        ApiService.apiService.getAnswers().enqueue(
-                new Callback<List<Donation>>() {
-
-                    @Override
-                    public void onResponse(Call<List<Donation>> call, Response<List<Donation>> response) {
-                        Toast.makeText(Base.this,"Call thanh cong",Toast.LENGTH_SHORT).show();
-                        Toast.makeText(Base.this,response.body().toString(),Toast.LENGTH_SHORT).show();
-                        app.donations=response.body();
-                        app.totalDonated = sumDonate(app.donations);
-                        if (loadingDialog.isShowing()) {
-                            loadingDialog.dismiss();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<Donation>> call, Throwable t) {
-                        Toast.makeText(Base.this,"Call that bai",Toast.LENGTH_SHORT).show();
-                    }
+        for(i=0;i<=app.donations.size()-1;i++){
+            ApiService.apiService.deleteItem(app.donations.get(i).id).enqueue(new Callback<Donation>() {
+                @Override
+                public void onResponse(Call<Donation> call, Response<Donation> response) {
+                        if(resetDialog.isShowing())
+                        resetDialog.dismiss();
                 }
-        );
 
-    }
-    private int sumDonate(List<Donation> donations){
-        int sum =0;
-        for(int i=0;i<donations.size();i++){
-            sum+=donations.get(i).amount;
+                @Override
+                public void onFailure(Call<Donation> call, Throwable t) {
+
+                }
+            });
         }
-        return sum;
     }
 }
